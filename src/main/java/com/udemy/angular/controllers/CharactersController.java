@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -72,7 +70,7 @@ public class CharactersController {
         }
         AnimeCharacter character = characterRepository.getOne(idCharacter);
         if (character == null) {
-            return  ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
         characterRepository.delete(character);
         return ResponseEntity.ok("Character removed with success");
@@ -85,7 +83,7 @@ public class CharactersController {
         }
         AnimeCharacter character = characterRepository.getOne(idCharacter);
         if (character == null) {
-            return  ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
         character.setShared(!isShared);
         return ResponseEntity.ok(characterRepository.save(character));
